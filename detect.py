@@ -41,7 +41,7 @@ def detect(image):
     image = prepare_image(image)
     ycbcr = get_ycbcr(image)
 
-    judged = map(judge, ycbcr)
+    judged = list(map(judge, ycbcr))
 
     rating = float(judged.count(True)) / len(judged)
     return rating > THRESHOLD, rating
@@ -49,6 +49,6 @@ def detect(image):
 
 if __name__ == '__main__':
     import sys
-    print sys.argv[-1]
+    print(sys.argv[-1])
     image = Image.open(sys.argv[-1])
-    print detect(image)
+    print(detect(image))
